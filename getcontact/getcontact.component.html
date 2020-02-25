@@ -1,0 +1,70 @@
+<div class="container">
+  <!-- Actual search box -->
+  <div class="form-group has-search" style="width: 20rem; ">
+    <span> <mat-icon>search</mat-icon><label>Search with Email Id</label></span>
+
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      [(ngModel)]="searchname"
+    />
+  </div>
+  <div>
+    <div class="container">
+      <div style="width: 20rem;">
+        <label style="font: bold;">Contact List</label>
+        <div class="card">
+          <span
+            class="border border-primary"
+            *ngIf="Contacts && Contacts.length > 0"
+          >
+            <div
+              *ngFor="
+                let contact of Contacts | contact: searchname;
+                let i = index
+              "
+            >
+              <p>
+                <mat-icon [routerLink]="['/edit', contact._id]"
+                  >border_color</mat-icon
+                >
+
+                {{ i + 1 }}. {{ contact.FirstName }}
+
+                <mat-icon
+                  class="heart"
+                  [ngClass]="{ active: contact.isFavorite }"
+                  (click)="addasfavorite(contact)"
+                  >star_border</mat-icon
+                >
+              </p>
+              <p>
+                <mat-icon (click)="deleteContact(contact._id)">delete</mat-icon>
+                {{ contact.Email }}
+              </p>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="container">
+      <div style="width: 20rem; ">
+        <label>Favorite Contact List</label>
+        <div class="card">
+          <span class="border border-primary">
+            <div *ngIf="favoriteContacts && favoriteContacts.length > 0">
+              <p *ngFor="let contact of favoriteContacts; let i = index">
+                {{ i + 1 }}. {{ contact.Email }}
+              </p>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="container">
+  <div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="myModalLabel">Update Contact</h2>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="registerForm" novalidate>
+            <div class="form-group">
+              <label class="col-md-4">FirstName</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="FirstName"
+                #FirstName
+                [(ngModel)]="contact.FirstName"
+              />
+
+              <div
+                *ngIf="
+                  registerForm.controls['FirstName'].invalid &&
+                  (registerForm.controls['FirstName'].dirty ||
+                    registerForm.controls['FirstName'].touched)
+                "
+                class="alert alert-danger"
+              >
+                <div *ngIf="registerForm.controls['FirstName'].errors.required">
+                  FirstName is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4">LastName</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="LastName"
+                #LastName
+                [(ngModel)]="contact.LastName"
+              />
+              <div
+                *ngIf="
+                  registerForm.controls['LastName'].invalid &&
+                  (registerForm.controls['LastName'].dirty ||
+                    registerForm.controls['LastName'].touched)
+                "
+                class="alert alert-danger"
+              >
+                <div *ngIf="registerForm.controls['LastName'].errors.required">
+                  LastName is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Email"
+                #Email
+                [(ngModel)]="contact.Email"
+              />
+              <div
+                *ngIf="
+                  registerForm.controls['Email'].invalid &&
+                  (registerForm.controls['Email'].dirty ||
+                    registerForm.controls['Email'].touched)
+                "
+                class="alert alert-danger"
+              >
+                <div *ngIf="registerForm.controls['Email'].errors.required">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4">Phone</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Phone"
+                #Phone
+                [(ngModel)]="contact.Phone"
+              />
+              <div
+                *ngIf="
+                  registerForm.controls['Phone'].invalid &&
+                  (registerForm.controls['Phone'].dirty ||
+                    registerForm.controls['Phone'].touched)
+                "
+                class="alert alert-danger"
+              >
+                <div *ngIf="registerForm.controls['Phone'].errors.required">
+                  Phone is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="
+                  updateContact(
+                    FirstName.value,
+                    LastName.value,
+                    Email.value,
+                    Phone.value
+                  )
+                "
+                [disabled]="!registerForm.valid"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
